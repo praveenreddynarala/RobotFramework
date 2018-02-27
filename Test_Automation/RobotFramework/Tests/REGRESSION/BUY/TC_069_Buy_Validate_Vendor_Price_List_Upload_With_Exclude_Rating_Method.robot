@@ -1,0 +1,249 @@
+*** Settings ***
+Documentation     A Test Suite With Set Of Tests To Validate Vendor Price List Upload With Excude Rating Method Checked
+
+Resource          ../../../Resources/common_resource.robot
+Resource          ../../../Resources/Pages/buy_page_resource.robot
+Resource          ../../../Resources/Pages/system_admin_page_resource.robot
+Resource          ../../../Resources/Pages/carrier_page_resource.robot
+Resource          ../../../Resources/Pages/Legacy/ixconnect_page_resource.robot
+Resource          ../../../Resources/ExternalDataSource/TestAutomation/buy_page_test_data_source.robot
+Resource          ../../../Resources/ExternalDataSource/TestAutomation/carrier_page_test_data_source.robot
+
+Suite Setup       Validate Login Functionality With Valid Credential
+Suite Teardown    Validate Log Out Functionality
+
+*** Variables ***
+${CALL TYPE}                    ${EMPTY}
+
+*** Test Cases ***
+Validate Navigate to Carrier module
+    [Tags]    REGRESSION
+    Click on Home Icon and Select 'Carrier' From Main Menu
+
+Validate Click Create Carrier Button
+    [Tags]    REGRESSION
+    Verify Click Create Carrier Button
+
+Validate Set Carrier Name
+    [Tags]    REGRESSION
+    Verify Set Carrier Name        ${TEST DATA PREFIX}
+
+Validate Set Carrier Abbreviation
+    [Tags]    REGRESSION
+    Verify Set Carrier Abbreviation     ${TEST DATA PREFIX}
+
+Validate Set Status
+    [Tags]    REGRESSION
+    Verify Set Status                   ${ACTIVE STATUS}
+
+Validate Set Company
+    [Tags]    REGRESSION
+    ${COMPANY NAME FOR CREATE} =    Verify Get Company
+    Verify Set Company                  ${COMPANY NAME FOR CREATE}
+
+Validate Set Carrier Number
+    [Tags]    REGRESSION
+    Verify Set Carrier Number
+
+Validate Click Create Carrier Save Button
+    [Tags]    REGRESSION
+    Verify Click Create Carrier Save Button
+
+Validate Expand Rate Plans Section
+    [Tags]    REGRESSION
+    Verify Expand Rate Plans Section
+
+Validate Click Create Rate Plan Button
+    [Tags]    REGRESSION
+    Verify Click Create Rate Plan Button
+
+Validate Set Rate Plan Name
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Set Rate Plan Name     ${TEST DATA PREFIX}
+
+Validate Set Rate Plan Abbreviation
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Set Rate Plan Abbreviation           ${TEST DATA PREFIX}
+
+Validate Set Business Type
+    [Tags]    REGRESSION
+    Verify Set Business Type            ${BUSINESS TYPE}
+
+Validate Set Traffic Direction
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Set Traffic Direction        ${TRAFFIC DIRECTION}
+
+Validate Set Tariff Type
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Set Tariff Type              ${TARIFF TYPE}
+
+Validate Set Currency
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Set Currency                 ${CURRENCY}
+
+Validate Set Product Catalog
+    [Tags]    REGRESSION
+    Verify Set Product Catalog          ${PRODUCT CATALOG}
+
+Validate Set Rating Method
+    [Tags]    REGRESSION
+    ${RATING METHOD} =      Verify Get Rating Method
+    Verify Set Rating Method            ${RATING METHOD}
+
+Validate Click Save Button
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Click Save Button
+
+Validate Close Carrier Profile Tab After Creating Rate Plan
+    [Tags]    REGRESSION
+    carrier_page_resource.Verify Close Current Tab            ${CARRIER PROFILE TAB NAME}
+
+Validate Close Carrier Window
+    [Tags]    REGRESSION
+    Verify Close Carrier Window
+
+Validate Navigate to Buy module
+    [Tags]    REGRESSION
+    Click on Home Icon and Select 'Buy' From Main Menu
+
+Validate Vendors Tab Is Available
+    [Tags]    REGRESSION
+    Verify The Vendors Tab Is Available
+
+Validate Navigate To Vendors Tab
+    [Tags]    REGRESSION
+    Verify Click On Vendors Tab
+
+Validate Click On Create Vendor Button
+    [Tags]    REGRESSION
+    Verify Click On Create Vendor Button
+
+Validate Get Call Type
+    [Tags]    REGRESSION
+    ${CALL TYPE} =      Verify Get Call Type
+    set suite variable       ${CALL TYPE}
+
+Validate Set Vendor Name
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Set Vendor Name          ${TEST DATA PREFIX}
+
+Validate Set Vendor Source
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Set Vendor Source        ${TEST DATA PREFIX}
+
+Validate Set IXtools Account
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Set Ixtools Account
+
+Validate Set Rate Plan
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Set Rate Plan
+
+Validate Set Call Type
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Set Call Type            ${CALL TYPE}
+
+Validate Click Exclude Rating Method From Price List Checkbox
+    [Tags]    REGRESSION
+    Verify Click Exclude Rating Method From Price List Checkbox
+
+Validate Click On Save Vendor Profile Button
+    [Tags]    REGRESSION
+    Verify Click On Save Vendor Profile Button
+
+Validate Close Create Vendor Tab
+    [Tags]    REGRESSION
+    Verify Close Create Vendor Tab      ${CREATE VENDOR TAB NAME}
+
+Validate Click On Vendor Price Lists
+    [Tags]    REGRESSION
+    Verify Click On Vendor Price Lists
+
+Validate Get Vendor Price Lists Number Of Rows From Grid
+    [Tags]    REGRESSION
+    Verify Get Vendor Price Lists Number Of Rows From Grid
+
+Validate Click Vendor Price List Upload Failed Red Icon
+    [Tags]    REGRESSION
+    Verify Click Vendor Price List Upload Failed Red Icon
+
+Validate Get Jobs Grid Initial Row Count
+    [Tags]    REGRESSION
+    Verify Get Jobs Grid Initial Row Count
+
+Validate Close Jobs Tab
+    [Tags]    REGRESSION
+    Verify Close Job Tab    ${JOB TAB NAME}
+
+Validate Close Vendor Price Lists Tab
+    [Tags]    REGRESSION
+    Verify Close Vendor Price Lists Tab     ${VENDOR PRICE LISTS TAB NAME}
+
+Validate Get Previous Created Vendor Name
+    [Tags]    REGRESSION
+    Verify Get Previous Created Vendor Name
+
+Validate Filter Vendor Grid Column
+    [Tags]    REGRESSION
+    Verify Filter Vendor Grid Column After Create        ${VENDOR COLUMN NAME}
+
+Validate Click On Inline Action Button
+    [Tags]    REGRESSION
+    Verify Click On Inline Action Button After Create
+
+Validate Select Upload Vendor Price List Inline Action Button
+    [Tags]    REGRESSION
+    Verify Select Buy Page Inline Action Item       ${UPLOAD VENDOR PRICE LIST INLINE ITEM NAME}
+
+Validate Click Browse Button
+    [Tags]    REGRESSION
+    Verify Click On Browse Button
+
+Validate Select The File To Be Uploaded
+    [Tags]    REGRESSION
+    ${CALL TYPE} =      Verify Get Call Type
+    Verify Select The File To Be Uploaded        ${TEMPLATE PATH}/${CALL TYPE}/${VENDOR PRICE LIST TEMPALTE NAME}
+
+Validate Click Upload Button
+    [Tags]    REGRESSION
+    Verify Click On Upload Button
+
+Validate Click On Vendor Price Lists After Upload
+    [Tags]    REGRESSION
+    Verify Click On Vendor Price Lists
+
+Validate Click Vendor Price List Upload Failed Red Icon After Upload
+    [Tags]    REGRESSION
+    Verify Click Vendor Price List Upload Failed Red Icon
+
+Validate Compare Job Grid Number Of Rows
+    [Tags]    REGRESSION
+    Verify Compare Jobs Grid Number Of Rows
+
+Validate Sort Reg Time Column In Descending Order
+    [Tags]    REGRESSION
+    Verify Sort Reg Time Column In Descending Order
+
+Validate Click Failed Upload Info Icon
+    [Tags]    REGRESSION
+    Verify Click Failed Upload Info Icon
+
+Validate Failed Upload Info
+    [Tags]    REGRESSION
+    Verify Failed Upload Info       ${ALL DESTINATION EXCLUDED FAILURE MESSAGE}
+
+Validate Close Current Pop Up
+    [Tags]    REGRESSION
+    buy_page_resource.Verify Close Current Pop Up     ${ADDITIONAL INFO POP UP NAME}
+
+Validate Close Jobs Tab After Upload
+    [Tags]    REGRESSION
+    Verify Close Job Tab    ${JOB TAB NAME}
+
+Validate Click On Vendor Price Lists After Job Run
+    [Tags]    REGRESSION
+    Verify Click On Vendor Price Lists
+
+Validate Vendor Price List Is Not Available In The Grid After Upload
+    [Tags]    REGRESSION
+    Verify New Uploaded Vendor Price List Is Not Available In The Grid
